@@ -33,16 +33,17 @@ public class DeveloperService implements GeneralService<Developer> {
 
     @Override
     public Developer update(Developer obj) {
-        if (validate(obj)) {
-            throw new IllegalArgumentException();
-        }
-
-        if (mapper.select(obj.getId()) == null) {
-            throw new RuntimeException();
-        } else {
-            mapper.update(obj);
-        }
-        return obj;
+//        if (validate(obj)) {
+//            throw new IllegalArgumentException();
+//        }
+//
+//        if (mapper.select(obj.getId()) == null) {
+//            throw new RuntimeException();
+//        } else {
+//            mapper.update(obj);
+//        }
+//        return obj;
+        return null;
     }
 
     @Override

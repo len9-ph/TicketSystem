@@ -30,6 +30,14 @@ public class SessionService implements GeneralService<Session> {
             return mapper.select(id);
         }
     }
+    
+    public Session findByUsername(String username) {
+        if (mapper.selectByLogin(username) == null) {
+            throw new RuntimeException();
+        } else {
+            return mapper.selectByLogin(username);
+        }
+    }
 
     @Override
     public Session update(Session obj) {

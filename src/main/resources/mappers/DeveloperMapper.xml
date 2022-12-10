@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lgadetsky.TicketSystem.mapper.DeveloperMapper">
+    <resultMap type="com.lgadetsky.TicketSystem.model.entity.Developer" id="developerMap">
+        <result property="id" column="id"/>
+        <result property="departmentId" column="DEP_ID"/>
+        <result property="firstName" column="FIRST_NAME"/>
+        <result property="lastName" column="LAST_NAME"/>
+        <result property="phone" column="PHONE"/>
+        <result property="email" column="EMAIL"/>
+    </resultMap>
+    
+    <insert id="insert"
+            parameterType="developerMap"
+            useGeneratedKeys="true">
+        <selectKey keyProperty="id"
+                    resultType="int"
+                    order="BEFORE">
+            select nextval('session_seq')
+        </selectKey>
+        insert into "developer" (ID, DEP_ID, FIRST_NAME, LAST_NAME, PHONE, EMAIL)
+        values(#{id}, #{departmentId}, #{firstName}, #{lastName}, #{phone}, #{email});
+    </insert>
+    
+    <select id="select"
+            parameterType="int"
+            resultMap="developerMap">
+        select * from "developer"
+        where id = #{id};
+    </select>
+    
+    <delete id=""
+            parameterType="int">
+        delete from "developer"
+        where id = #{id};
+    </delete>
+</mapper>

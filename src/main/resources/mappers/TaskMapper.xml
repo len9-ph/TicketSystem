@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lgadetsky.com.lgadetsky.TicketSystem.mapper.TaskMapper">
+    <resultMap type="com.lgadetsky.TicketSystem.model.entity.Task" id="taskMap">
+        <result property="id" column="ID"/>
+        <result property="taskName" column="TASK_NAME"/>
+        <result property="taskComment" column="TASK_COMMENT"/>
+        <result property="departmentID" column="DEP_ID"/>
+        <result property="status" column="STATUS"/>
+    </resultMap>
+    
+    <resultMap type="com.lgadetsky.TicketSystem.model.entity.TaskItem" id="taskItemMap">
+        <result property="id" column="ID"/>
+        <result property="developerId" column="DEV_ID"/>
+        <result property="taskId" column="TASK_ID"/>
+        <result property="itemName" column="ITEM_NAME"/>
+    </resultMap>
+    
+    <insert id="insertTask"
+            parameterType="com.lgadetsky.TicketSystem.model.entity.Task"
+            useGeneratedKeys="true">
+        <selectKey keyProperty="id"
+                    resultType="int"
+                    order="BEFORE">
+            select nextval('task_seq')
+        </selectKey>
+        insert into "task" (ID, TASK_NAME, TASK_COMMENT, DEP_ID, STATUS)
+        values(#{id}, #{taskName}, #{taskComment}, #{departmentId}, #{status});
+    </insert>
+    
+    <select id="selectTask"
+            parameterType="int"
+            resultMap="taskMap">
+        select * from "task" t
+        where t.id = #{id};
+    </select>
+    
+    <update id="updateTask"
+            parameterType="com.lgadetsky.TicketSystem.model.entity.Task">
+        update "task" set
+            task_name = #{taskName}
+            task_comment = #{taskComment}
+            dep_id = #{departmentId}
+            status = #{status}
+        where id = #{id};
+    </update>
+    
+    <delete id="deleteTask"
+            parameterType="int">
+        delete from "task"
+        where id = #{id};
+    </delete>
+    
+    <insert id="insertTaskItem"
+            parameterType="com.lgadetsky.TicketSystem.model.entity.TaskItem"
+            useGeneratedKeys="true">
+        <selectKey keyProperty="id"
+                    resultType="int"
+                    order="BEFORE">
+            select nextval('task_item_seq')
+        </selectKey>
+        insert into "task_item" (ID, DEV_ID, TASK_ID, ITEM_NAME)
+        values(#{id}, #{developerId}, #{taskId}, #{itemName});
+    </insert>
+    
+    <select id="selectTaskItem"
+            parameterType="int"
+            resultMap="taskItemMap">
+        select * from "task_item"
+        where id = #{id};
+    </select>
+    
+    <select id="selectTaskItems"
+            parameterType="int"
+            resultMap="taskItemMap">
+        select * from "task_item" ti
+        where ti.task_id = #{id};
+    </select>
+    
+    <update id="updateTaskItem"
+            parameterType="com.lgadetsky.TicketSystem.model.entity.TaskItem">
+        update "task" set
+            status = #{status}
+        where id = #{id};
+    </update>
+    
+    <delete id="deleteTaskItem"
+            parameterType="int">
+        delete from "task_item"
+        where id = #{id};
+    </delete>
+    
+    <delete id="deleteTaskItemsByTaskId"
+            parameterType="int">
+        delete from "task_item"
+        where id = #{id};
+    </delete>
+    
+</mapper>

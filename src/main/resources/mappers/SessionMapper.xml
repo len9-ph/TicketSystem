@@ -3,5 +3,50 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lgadetsky.TicketSystem.mapper.SessionMapper">
-
+    <resultMap type="com.lgadetsky.TicketSystem.model.entity.Session" id="sessionMap">
+        <result property="id" column="ID"/>
+        <result property="login" column="LOGIN"/>
+        <result property="password" column="PASSWORD"/>
+        <result property="developerId" column="DEV_ID"/>
+    </resultMap>
+    
+    <insert id="insert"
+            parameterType="com.lgadetsky.TicketSystem.model.entity.Session"
+            useGeneratedKeys="true">
+        <selectKey keyProperty="id"
+                    resultType="int"
+                    order="BEFORE">
+            select nextval('session_seq')
+        </selectKey>
+        insert into "session" (ID, LOGIN, PASSWORD, DEV_ID)
+        values(#{id}, #{login}, #{password}, #{developerId});
+    </insert>
+    
+    <select id="select"
+            parameterType="int"
+            resultMap="sessionMap">
+        select * from "session" s
+        where s.id = #{id};
+    </select>
+    
+    <select id="selectByLogin"
+            parameterType="string"
+            resultMap="sessionMap">
+        select * from "session" s
+        where s.login = #{login};
+    </select>
+    
+    <update id="update"
+            parameterType="com.lgadetsky.TicketSystem.model.entity.Session">
+        update "session" set
+            password = #{password}
+        where id = #{id};
+    </update>
+    
+    <delete id="delete"
+            parameterType="int">
+        delete from "session"
+        where id = #{id};
+    </delete>
+    
 </mapper>

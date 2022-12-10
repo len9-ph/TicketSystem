@@ -8,6 +8,5 @@ import com.lgadetsky.TicketSystem.model.entity.Developer;
 public interface DeveloperMapper {
     void insert(Developer developer);
     Developer select(int id);
-    void update(Developer developer);
     void delete(int id);
 }
