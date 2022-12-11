@@ -10,5 +10,5 @@ public class Task {
     private Integer departmentId;
     private String taskName;
     private String taskComment;
-    private Status status;
+    private Integer status;
 }

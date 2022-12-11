@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lgadetsky.TicketSystem.mapper.SessionMapper">
+<mapper namespace="com.lgadetsky.TicketSystem.repository.mapper.SessionMapper">
     <resultMap type="com.lgadetsky.TicketSystem.model.entity.Session" id="sessionMap">
         <result property="id" column="ID"/>
         <result property="login" column="LOGIN"/>

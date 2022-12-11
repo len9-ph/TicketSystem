@@ -2,7 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lgadetsky.TicketSystem.mapper.DeveloperMapper">
+<mapper namespace="com.lgadetsky.TicketSystem.repository.mapper.DeveloperMapper">
+
     <resultMap type="com.lgadetsky.TicketSystem.model.entity.Developer" id="developerMap">
         <result property="id" column="id"/>
         <result property="departmentId" column="DEP_ID"/>
@@ -13,7 +14,7 @@
     </resultMap>
     
     <insert id="insert"
-            parameterType="developerMap"
+            parameterType="int"
             useGeneratedKeys="true">
         <selectKey keyProperty="id"
                     resultType="int"

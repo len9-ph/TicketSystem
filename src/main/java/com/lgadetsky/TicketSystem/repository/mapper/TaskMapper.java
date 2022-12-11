@@ -1,4 +1,4 @@
-package com.lgadetsky.TicketSystem.mapper;
+package com.lgadetsky.TicketSystem.repository.mapper;
 
 import java.util.List;
 

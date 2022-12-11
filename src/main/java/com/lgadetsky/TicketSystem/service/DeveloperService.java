@@ -3,8 +3,8 @@ package com.lgadetsky.TicketSystem.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lgadetsky.TicketSystem.mapper.DeveloperMapper;
 import com.lgadetsky.TicketSystem.model.entity.Developer;
+import com.lgadetsky.TicketSystem.repository.mapper.DeveloperMapper;
 
 @Service
 public class DeveloperService implements GeneralService<Developer> {

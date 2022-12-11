@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lgadetsky.TicketSystem.mapper.DepartmentMapper">
+<mapper namespace="com.lgadetsky.TicketSystem.repository.mapper.DepartmentMapper">
     <resultMap type="com.lgadetsky.TicketSystem.model.entity.Department" id="departmentMap">
         <result property="id" column="ID"/>
         <result property="name" column="NAME"/>

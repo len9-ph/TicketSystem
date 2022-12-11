@@ -2,12 +2,12 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lgadetsky.com.lgadetsky.TicketSystem.mapper.TaskMapper">
+<mapper namespace="com.lgadetsky.TicketSystem.repository.mapper.TaskMapper">
     <resultMap type="com.lgadetsky.TicketSystem.model.entity.Task" id="taskMap">
         <result property="id" column="ID"/>
         <result property="taskName" column="TASK_NAME"/>
         <result property="taskComment" column="TASK_COMMENT"/>
-        <result property="departmentID" column="DEP_ID"/>
+        <result property="departmentId" column="DEP_ID"/>
         <result property="status" column="STATUS"/>
     </resultMap>
     
@@ -70,6 +70,13 @@
             resultMap="taskItemMap">
         select * from "task_item"
         where id = #{id};
+    </select>
+    
+    <select id="selectTaskItemByDeveloperId"
+            parameterType="int"
+            resultMap="taskItemMap">
+        select * from "task_item" ti
+        where ti.dev_id = #{id};
     </select>
     
     <select id="selectTaskItems"

@@ -3,20 +3,22 @@ package com.lgadetsky.TicketSystem.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.lgadetsky.TicketSystem.mapper.TaskMapper;
 import com.lgadetsky.TicketSystem.model.entity.Task;
 import com.lgadetsky.TicketSystem.model.entity.TaskItem;
+import com.lgadetsky.TicketSystem.repository.mapper.TaskMapper;
 
+@Service
 public class TaskService implements GeneralService<Task>{
     
     @Autowired
-    private TaskMapper mapper;
+    private TaskMapper taskMapper;
     
     @Override
     public Task create(Task obj) {
         if (validateTask(obj)) {
-            mapper.insertTask(obj);
+            taskMapper.insertTask(obj);
             return obj;
         } else {
             throw new IllegalArgumentException();
@@ -25,11 +27,12 @@ public class TaskService implements GeneralService<Task>{
 
     @Override
     public Task findById(Integer id) {
-        if (mapper.selectTask(id) == null) {
-            throw new RuntimeException();
-        } else {
-            return mapper.selectTask(id);
-        }
+        return taskMapper.selectTask(id);
+//        if (taskMapper.selectTask(id) == null) {
+//            throw new RuntimeException();
+//        } else {
+//            return taskMapper.selectTask(id);
+//        }
     }
 
     @Override
@@ -38,22 +41,22 @@ public class TaskService implements GeneralService<Task>{
             throw new IllegalArgumentException();
         }
         
-        if (mapper.selectTask(obj.getId()) == null) {
+        if (taskMapper.selectTask(obj.getId()) == null) {
             throw new RuntimeException();
         } else {
-            mapper.updateTask(obj);
+            taskMapper.updateTask(obj);
         }
         return obj;
     }
 
     @Override
     public void deleteById(Integer id) {
-        mapper.deleteTask(id);
+        taskMapper.deleteTask(id);
     }
     
     public TaskItem createTaskItem(TaskItem obj) {
         if (validateTaskItem(obj)) {
-            mapper.insertTaskItem(obj);
+            taskMapper.insertTaskItem(obj);
             return obj;
         } else {
             throw new IllegalArgumentException();
@@ -61,19 +64,20 @@ public class TaskService implements GeneralService<Task>{
     }
     
     public TaskItem findTaskItemById(int id) {
-        if (mapper.selectTaskItem(id) != null) {
-            return mapper.selectTaskItem(id);
+        if (taskMapper.selectTaskItem(id) != null) {
+            return taskMapper.selectTaskItem(id);
         } else {
             throw new IllegalArgumentException();
         }
     }
     
     public List<TaskItem> findAllTaskItemsByDevId(int id) {
-        if (mapper.selectTaskItemByDeveloperId(id) != null) {
-            return mapper.selectTaskItemByDeveloperId(id);
-        } else {
-            throw new IllegalArgumentException();
-        }
+        return taskMapper.selectTaskItemByDeveloperId(id);
+//        if (taskMapper.selectTaskItemByDeveloperId(id) != null) {
+//            return taskMapper.selectTaskItemByDeveloperId(id);
+//        } else {
+//            throw new IllegalArgumentException();
+//        }
     }
     
     public TaskItem update(TaskItem obj) {
@@ -81,20 +85,20 @@ public class TaskService implements GeneralService<Task>{
             throw new IllegalArgumentException();
         }
         
-        if (mapper.selectTask(obj.getId()) == null) {
+        if (taskMapper.selectTask(obj.getId()) == null) {
             throw new RuntimeException();
         } else {
-            mapper.updateTaskItem(obj);
+            taskMapper.updateTaskItem(obj);
         }
         return obj;
     }
     
     public void deleteTaskItem(int id) {
-        mapper.deleteTaskItem(id);
+        taskMapper.deleteTaskItem(id);
     }
     
     public void deleteTaskItemsByTaskId(int id) {
-        mapper.deleteTaskItemsByTaskId(id);
+        taskMapper.deleteTaskItemsByTaskId(id);
     }
     
     private boolean validateTask(Task task) {

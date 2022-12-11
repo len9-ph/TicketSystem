@@ -3,8 +3,8 @@ package com.lgadetsky.TicketSystem.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lgadetsky.TicketSystem.mapper.SessionMapper;
 import com.lgadetsky.TicketSystem.model.entity.Session;
+import com.lgadetsky.TicketSystem.repository.mapper.SessionMapper;
 
 @Service
 public class SessionService implements GeneralService<Session> {
